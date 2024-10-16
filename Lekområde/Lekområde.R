@@ -2,9 +2,10 @@ library(sf)
 library(terra)
 library(rio)
 
+
 # Laddar filer
-depth <- terra::rast("Lekområde/data/symphony_djup_v2.tif")
-depth <- terra::project(depth, "EPSG:4258", method = "near")
+depth <- terra::rast("Lekområde/data/symphony_djup_v2.tif") |> 
+  terra::project("EPSG:4258", method = "near")
 areas <- terra::vect("Lekområde/data/Lektidsdatabasens Geografier.shp", crs = terra::crs(depth))
 speciesList <- rio::import("Lekområde/data/ArtlistaLekområden.xlsx")
 
